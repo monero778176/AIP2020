@@ -9,9 +9,14 @@
 + 灰階pixel分布圖
 
 ## 進階功能
-+ Harr小波轉換
++ Haar小波轉換
 + 加入高斯雜訊
 + 高斯模糊
 + 邊緣mask
 
+### Haar轉換範例圖
+![2次轉換](haar/gray2transform.png)
+
 關於mask的轉換並不是使用opencv套件做convolution，而是使用傳統的直接陣列中的mask去做convolution，因此速度上會較慢。
+### 參考來源
+my_icon.ico: from [flaticon](https://www.flaticon.com/)
