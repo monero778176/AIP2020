@@ -17,6 +17,17 @@
 ### Haar轉換範例圖
 ![2次轉換](haar/gray2transform.png)
 
-關於mask的轉換並不是使用opencv套件做convolution，而是使用傳統的直接陣列中的mask去做convolution，因此速度上會較慢。
-### 參考來源
+
+### 程式執行
+```
+python -m venv aip_env
+"aip_env/Script/activate"
+pip install -r requirements.txt
+
+python main.py
+```
+
+
+
+### icon來源
 my_icon.ico: from [flaticon](https://www.flaticon.com/)

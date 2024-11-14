@@ -11,7 +11,7 @@ import os
 import io
 
 import ui.pyui as ui
-import ui.mask as mask_ui
+# import ui.mask as mask_ui
 import cv2
 import numpy as np
 from PIL import Image
@@ -27,7 +27,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         self.kernel = ''
         self.edge_kernel = ''
         self.setupUi(self)
-        self.setWindowTitle("AIP 61047020S")
+        self.setWindowTitle("AIP worker")
         self.cv_img = ''
         self.initUI()
 
@@ -122,6 +122,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         self.slider_mask.setMaximum(5)
         self.slider_mask.setValue(3)
         self.slider_mask.setSingleStep(2)
+        self.slider_mask.setTickInterval(2)
 
         self.tableWidget.setColumnCount(3)
         self.tableWidget.setRowCount(3)
@@ -133,6 +134,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         self.slider_mask_2.setMaximum(5)
         self.slider_mask_2.setValue(3)
         self.slider_mask_2.setSingleStep(2)
+        self.slider_mask_2.setTickInterval(2)
 
         self.tableWidget_2.setColumnCount(3)
         self.tableWidget_2.setRowCount(3)
@@ -295,7 +297,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
 
     def RGB2Gray(self):
         self.label_histogram.clear()
-        if self.cv_img_output != '':
+        if len(self.cv_img_output) != 0:
             self.label_message.setText('')
             output_shape = self.cv_img_output.shape
             if len(output_shape) != 2:
@@ -421,7 +423,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
 
     def read2Haar(self):  # 讀入的圖片要做Haar轉換
 
-        if self.cv_img_output != '' and self.input_depth.text() != '':
+        if len(self.cv_img_output) != 0 and self.input_depth.text() != '':
             str_depth = self.input_depth.text()
             # try:
             self.depth = int(str_depth)
