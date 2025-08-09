@@ -1,0 +1,18 @@
+services:
+  ui:
+    image: pyqt6-docker
+    build:
+      dockerfile: dockerfile
+    
+    volumes:
+      - .:/app
+
+    ports: 
+      - "8080:8080"
+
+    environment:
+      # 這邊設定 DISPLAY 為主機的 X Server
+      DISPLAY: 172.25.112.1:0.0
+
+    network_mode: bridge
+    tty: true
