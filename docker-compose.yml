@@ -6,13 +6,16 @@ services:
     
     volumes:
       - .:/app
+      - ./ui:/app/ui
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
 
     ports: 
       - "8080:8080"
 
     environment:
       # 這邊設定 DISPLAY 為主機的 X Server
-      DISPLAY: 172.25.112.1:0.0
+      # DISPLAY: 172.25.112.1:0.0
+      DISPLAY: host.docker.internal:0.0
 
     network_mode: bridge
     tty: true
