@@ -1,6 +1,7 @@
 
 
 
+import json
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtGui import *
@@ -9,6 +10,7 @@ import io
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg,FigureCanvasAgg
 from matplotlib.figure import Figure
 import numpy as np
+import cv2
 
 
 def put_img_to_label(rgb_image,put_obj):
@@ -25,13 +27,9 @@ def put_img_to_label(rgb_image,put_obj):
     bytesPerLine = 3 * width # For a 3-channel RGB image
     q_image = QImage(rgb_image.data, width, height, bytesPerLine, QImage.Format.Format_RGB888)
     qpixmap = QPixmap.fromImage(q_image)
-
-    lbw,lbh = put_obj.size().width(),put_obj.size().height()  # 畫布大小取得
-
-    scale_pixmap = qpixmap.scaled(lbw,lbh,Qt.AspectRatioMode.KeepAspectRatio,
-                        Qt.TransformationMode.SmoothTransformation)
-
-    put_obj.setPixmap(scale_pixmap)
+    
+    # 直接設置原始 QPixmap，縮放交由 QLabel 的 setScaledContents 屬性處理
+    put_obj.setPixmap(qpixmap)
 
 
 def show_matplotlib_plot(np_data,plot_type,ui_obj):
@@ -74,5 +72,68 @@ def show_matplotlib_plot(np_data,plot_type,ui_obj):
 
     # 5. 將 QPixmap 設定到 QLabel
     ui_obj.setPixmap(scaled_pixmap)
+
+
+
+def add_gaussian_noise(image, mean=0, std=25):
+    """
+    向图像添加高斯噪声。
+
+    Args:
+        image: 要添加噪声的图像 (numpy数组)。
+        mean: 高斯分布的均值。
+        std:  高斯分布的标准差。
+
+    Returns:
+        添加了高斯噪声的图像。
+    """
+    # 生成与图像大小相同的随机噪声
+    noise = np.random.normal(mean, std, image.shape)
+    # 将噪声添加到图像中，并确保像素值在有效范围内
+    noisy_image = np.clip(image + noise, 0, 255).astype(np.uint8)
+    return noisy_image
+
+
+def add_blur(img,json_data):
+    get_type = json_data.get('filter')
+    kernel_size = int(json_data.get('kernel_size'))
+    if get_type=='gassian':
+        img = cv2.GaussianBlur(img,(kernel_size,kernel_size),0)
+    elif get_type=='median':
+        img = cv2.medianBlur(img,(kernel_size,kernel_size),0)
+
+    elif get_type=='bilateral':
+        img = cv2.bilateralFilter(img,kernel_size,0,0)
+
+    return img
+
+
+def add_edge(img,json_data):
+    get_type_mask = json_data.get('mask')  # 獲取名稱
+    mask = json_data.get('mask_np')
+
+    mask_name = get_type_mask.split(' ')[0]
+    xy_axis = get_type_mask.split(' ')[-1].replace('(','').replace(')','').split('-')[0]
+    print(f'獲得mask 名稱:{mask_name} 對應的 xy 軸:{xy_axis}')
+
+
+    if mask_name=='Sobal' and xy_axis=='x':
+        print(f'進入:{mask_name} {mask_name}-axis')
+        img =  cv2.filter2D(img,0,kernel=np.array(mask))
+    elif mask_name=='Sobal' and xy_axis=='y':
+        print(f'進入:{mask_name} {mask_name}-axis')
+        
+        img =  cv2.filter2D(img,0,kernel=np.array(mask))
+    elif mask_name=='Scharr' and xy_axis=='x':
+        print(f'進入:{mask_name} {mask_name}-axis')
+
+        img =  cv2.filter2D(img,0,kernel=np.array(mask))
+    elif mask_name=='Scharr' and xy_axis=='y':
+        print(f'進入:{mask_name} {mask_name}-axis')
+
+        img =  cv2.filter2D(img,0,kernel=np.array(mask))
+
+    return img
+
 
     

@@ -23,31 +23,6 @@
       <height>21</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>快速選擇模板</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Sobal (x-axis 3x3)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Sobal (y-axis 3x3)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Scharr (x-axis 3x3)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Scharr (y-axis 3x3)</string>
-     </property>
-    </item>
    </widget>
    <widget class="QTableView" name="tv_mask">
     <property name="geometry">

@@ -28,8 +28,9 @@ class ResultWindow(QMainWindow, ui.Ui_MainWindow):
 
 
     def receive_gray(self,data):
-        print(f'接收到的圖片大小:{data.shape}')
-        put_img_to_label(data,self.lb_result)
+        img_type, np_img = data
+        print(f'接收到的圖片大小:{np_img.shape}')
+        put_img_to_label(np_img,self.lb_result)
 
 
 

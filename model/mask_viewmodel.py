@@ -9,7 +9,9 @@ class maskTableModel(QAbstractTableModel):
 
     # 2. 定義 rowCount 和 columnCount 方法，告訴 QTableView 表格有多大
     def rowCount(self, parent):
-        return len(self._data)
+
+        # return len(self._data)
+        return len(self._data[0]) if self._data else 0
 
     def columnCount(self, parent):
         return len(self._data[0]) if self._data else 0
@@ -18,6 +20,10 @@ class maskTableModel(QAbstractTableModel):
     def data(self, index, role):
         if role == Qt.ItemDataRole.DisplayRole:
             return str(self._data[index.row()][index.column()])
+        
+        elif role == Qt.ItemDataRole.TextAlignmentRole:
+            # Center align all cells
+            return Qt.AlignmentFlag.AlignCenter
         return None
 
 # 假設這是你的資料

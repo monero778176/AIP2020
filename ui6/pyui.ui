@@ -6,183 +6,178 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1035</width>
-    <height>645</height>
+    <width>770</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>50</y>
-      <width>601</width>
-      <height>251</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="lb_input">
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lb_output">
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QPushButton" name="btn_select_img">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>select image</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>280</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>generate</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>40</y>
-      <width>181</width>
-      <height>131</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Detail</string>
-    </property>
-    <widget class="QLabel" name="lb_detail">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>20</y>
-       <width>161</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QLabel" name="lb_mask_result">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>350</y>
-      <width>111</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>選擇mask 結果</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>310</y>
-      <width>441</width>
-      <height>281</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="lb_hist">
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QPushButton" name="btn_gray">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>340</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Gray image</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="btn_select_img">
+      <property name="text">
+       <string>select image</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="lb_mask_result">
+      <property name="text">
+       <string>選擇mask 結果</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lb_input">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lb_hist">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="lb_output">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>效果</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0" rowspan="2" colspan="2">
+            <widget class="QListWidget" name="list_effect"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="btn_apply_effect">
+             <property name="text">
+              <string>apply</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+          <zorder>btn_apply_effect</zorder>
+          <zorder>list_effect</zorder>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="0">
+           <widget class="QPushButton" name="btn_gray">
+            <property name="text">
+             <string>Gray image</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="btn_check_effect">
+            <property name="text">
+             <string>PushButton</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string>Detail</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="0" column="0">
+              <widget class="QLabel" name="lb_detail">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1035</width>
+     <width>770</width>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menufile">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionselect_image"/>
-    <addaction name="actionsave"/>
+    <addaction name="actionSelect_Image"/>
+    <addaction name="actionSave"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionedge_detection"/>
-    <addaction name="actionBlur_process"/>
+    <widget class="QMenu" name="menuAdd_noise">
+     <property name="title">
+      <string>Add noise</string>
+     </property>
+     <addaction name="actionGaussian_noise"/>
+     <addaction name="actionSalit_and_papper_noise"/>
+    </widget>
+    <addaction name="actionEdge_detection"/>
+    <addaction name="actionBlur_processing"/>
+    <addaction name="menuAdd_noise"/>
    </widget>
-   <addaction name="menufile"/>
+   <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionselect_image">
+  <action name="actionSelect_Image">
    <property name="text">
-    <string>Select image</string>
+    <string>Select Image</string>
    </property>
   </action>
-  <action name="actionsave">
+  <action name="actionSave">
    <property name="text">
     <string>Save</string>
    </property>
   </action>
-  <action name="actionedge_detection">
+  <action name="actionEdge_detection">
    <property name="text">
     <string>Edge detection</string>
    </property>
   </action>
-  <action name="actionBlur_process">
+  <action name="actionBlur_processing">
    <property name="text">
     <string>Blur processing</string>
+   </property>
+  </action>
+  <action name="actionGaussian_noise">
+   <property name="text">
+    <string>Gaussian noise</string>
+   </property>
+  </action>
+  <action name="actionSalit_and_papper_noise">
+   <property name="text">
+    <string>Salit and pepper noise</string>
    </property>
   </action>
  </widget>
